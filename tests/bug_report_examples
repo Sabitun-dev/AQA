@@ -1,0 +1,344 @@
+In this file, I exported some of the bug reports I made in my previous projects: Tezbor and Tezride. 
+These reports from authentication of 'Tebor Driver' mobile app were actually uploaded to the Azure DevOps. As long as I don't have access to task manager, I just mockup the bug report.
+
+
+
+Evironments: Android & iOS
+
+Description:
+Phone number field allows submission with less than 9 digits without any validation feedback.
+
+Given:
+the user is on the phone number entry screen
+When:
+the user enters fewer than 9 digits and presses "Next"
+Then:
+the application does not respond
+Actual Result:
+No warning or error message is shown
+App appears frozen or unresponsive
+Expected Result:
+A validation error message should be displayed indicating the phone number is incomplete
+User should not proceed until a valid phone number is entered
+
+
+
+
+
+
+
+
+
+
+Description:
+Phone number input allows non-numeric characters.
+
+Given:
+the user is on the phone number entry screen
+When:
+the user enters letters or special characters
+Then:
+the input is accepted without error
+Actual Result:
+Letters and special characters can be entered
+No validation error is shown
+Expected Result:
+Phone number field should accept digits only
+Invalid characters should be blocked or trigger validation error
+
+
+
+
+
+
+
+
+Description:
+Name and surname fields allow submission with only whitespace.
+
+Given:
+the user is on the "About the Driver" page
+When:
+the user enters only spaces in name or surname fields
+Then:
+the fields are accepted as valid input
+Actual Result:
+User can proceed with invalid name/surname
+Expected Result:
+Fields should reject whitespace-only input
+Validation message should request a valid name/surname
+
+
+
+
+
+
+
+
+
+Description:
+Email field does not perform basic format validation.
+
+Given:
+the user is on the "About the Driver" page
+When:
+the user enters "   @" or "@ " in the email field
+Then the input is accepted
+Actual Result:
+Invalid email formats pass validation
+Field only validate if there is @
+Expected Result:
+Email field should validate correct email format
+Invalid formats should display an error message
+
+
+
+
+
+
+
+
+
+
+Description:
+Invited-by phone number field allows non-numeric input.
+
+Given:
+the user is on the "About the Driver" page
+When:
+the user enters letters or special characters in the invited-by field
+Then:
+the input is accepted without validation
+Actual Result:
+Invalid characters are allowed
+No error message is shown
+Expected Result:
+Field should accept digits only
+Invalid input should be blocked or validated
+
+
+
+
+
+
+
+
+
+Description:
+Invited-by phone number field is optional but not labeled as such.
+
+Given:
+the user is on the "About the Driver" page
+When:
+the user views the invited-by phone number field
+Then:
+there is no indication that the field is optional
+Actual Result:
+Field is optional but unclear to users
+Partial input triggers errors without context
+Expected Result:
+Field should be labeled as "Optional"
+Validation should trigger only if the user starts entering data
+
+
+
+
+
+
+
+Description:
+Privacy and Policy section opens with no visible content.
+
+Given:
+the user is on the "About the Driver" page
+When:
+the user opens the Privacy and Policy section
+Then:
+the content area is empty
+Actual Result:
+No text or information is displayed
+Expected Result:
+Privacy and Policy content should be displayed properly
+
+
+
+
+
+
+
+Description:
+Next button remains enabled regardless of form completion.
+
+Given:
+the user is on the "About the Driver" page
+
+When:
+required fields are incomplete
+
+Then:
+the Next button remains enabled
+
+Actual Result:
+User can tap Next without completing mandatory fields
+
+Expected Result:
+Next button should be disabled (blurred out) until all required fields are valid
+
+
+
+
+
+
+Description:
+Identification screen button design causes user confusion and incorrect flow.
+
+Given:
+the user is on the Identification page 
+
+When:
+the user sees "Open Camera" (white) and "Next" (green) buttons
+
+Then:
+the user taps "Next" expecting to proceed
+
+Actual Result:
+"Next" button appears primary but is not used for photo submission
+User proceeds by pressing "OK" after photo capture, not "Next"
+
+Expected Result:
+Primary action should be "Open Camera"
+"Next" button should be disabled or removed until photo is captured
+Flow should be consistent and clear
+
+
+
+
+
+
+
+
+
+
+
+Description:
+Help ("?") icon shows active state but does not respond to taps.
+
+Given:
+the user is on the Identification page
+
+When:
+the user taps the "?" icon
+
+Then:
+nothing happens
+
+Actual Result:
+Icon appears interactive but is non-functional
+
+Expected Result:
+Icon should either be tappable and show help content
+Or be visually disabled if not functional
+
+
+
+
+
+
+
+
+Description:
+App fails to inform user when camera permission is denied.
+
+Given:
+the user denies camera permission
+
+When:
+the app attempts to open the camera
+
+Then:
+no error or guidance is shown
+
+Actual Result:
+Camera does not open
+User receives no explanation or instructions
+
+Expected Result:
+App should show a clear message explaining camera permission is required
+User should be guided to enable permission in settings
+
+And
+
+Given the user goes to system settings without killing the app
+When the user enables camera permission and returns to the app
+Then the app starts the registration flow from the beginning
+
+
+
+
+
+
+
+Description:
+Previously received OTP remains valid after restarting or re-entering the phone number.
+
+Given:
+the user receives an OTP
+
+When:
+the user navigates back to phone number entry or closes the app
+
+And:
+enters the same phone number again
+
+Then:
+no new OTP is sent
+
+Actual Result:
+Old OTP can still be used to complete registration
+
+Expected Result:
+A new OTP should be generated for each new attempt
+Old OTPs should be invalidated
+
+
+
+
+
+
+
+
+
+Description:
+OTP submission does not handle network loss correctly.
+
+Given:
+the user is on the OTP verification screen
+
+When:
+the network connection is lost
+
+And:
+the user submits the OTP
+
+Then:
+no network error message is displayed
+
+Actual Result:
+No error is shown
+After reconnecting, registration does not continue automatically
+User must re-enter the OTP manually
+
+Expected Result:
+Network error message should be displayed
+App should retry or guide the user clearly after reconnection
+
+
+
+
+
+
+
+
+
+
+
